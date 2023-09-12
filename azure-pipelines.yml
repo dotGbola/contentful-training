@@ -30,6 +30,16 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'dotfusion-contentful-training'
+        organization: 'halitesolution'
+        scannerMode: 'MSBuild'
+        projectKey: 'dotfusion-contentful-training'
+        projectName: 'dotfusion-contentful-training'
+    - task: SonarCloudAnalyze@1
+      inputs:
+        jdkversion: 'JAVA_HOME_17_X64'
     
     - task: NodeTool@0
       inputs:
